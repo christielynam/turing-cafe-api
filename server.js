@@ -68,7 +68,7 @@ app.locals.reservations = [
   }
 ]
 
-const { reservations } = app.locals
+let { reservations } = app.locals
 
 app.get('/api/v1/reservations', (request, response) => {
   return response.json(reservations)
@@ -91,9 +91,9 @@ app.delete('/api/v1/reservations/:id', (request, response) => {
     }
     return resy.id != id
   })
-  if(!found) return res.status(404).json('Reservation not found')
+  if(!found) return response.status(404).json('Reservation not found')
   reservations = updatedReservations
-  return res.status(204).json(reservations)
+  return response.status(204).json(reservations)
 })
 
 app.listen(app.get('port'), () => {
