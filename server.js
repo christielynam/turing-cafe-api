@@ -91,9 +91,10 @@ app.delete('/api/v1/reservations/:id', (request, response) => {
     }
     return resy.id != id
   })
+  console.log(updatedReservations)
   if(!found) return response.status(404).json('Reservation not found')
   reservations = updatedReservations
-  return response.status(204).json(reservations)
+  response.status(200).json(reservations)
 })
 
 app.listen(app.get('port'), () => {
